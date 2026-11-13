@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Descripción de los rendimientos agrícolas</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="descriptiva_files/libs/clipboard/clipboard.min.js"></script>
+<script src="descriptiva_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="descriptiva_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="descriptiva_files/libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="descriptiva_files/libs/quarto-html/popper.min.js"></script>
+<script src="descriptiva_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="descriptiva_files/libs/quarto-html/anchor.min.js"></script>
+<link href="descriptiva_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="descriptiva_files/libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="descriptiva_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="descriptiva_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="descriptiva_files/libs/bootstrap/bootstrap-943e08653f4bd8ac7ab9292bfc489267.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Saltar al contenido principal</a>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul class="collapse">
+  <li><a href="#lectura-y-verificación-de-los-datos" id="toc-lectura-y-verificación-de-los-datos" class="nav-link active" data-scroll-target="#lectura-y-verificación-de-los-datos">Lectura y verificación de los datos</a></li>
+  <li><a href="#descripción-breve" id="toc-descripción-breve" class="nav-link" data-scroll-target="#descripción-breve">Descripción breve</a></li>
+  <li><a href="#estadística-descriptiva-de-variables-numéricas" id="toc-estadística-descriptiva-de-variables-numéricas" class="nav-link" data-scroll-target="#estadística-descriptiva-de-variables-numéricas">Estadística descriptiva de variables numéricas</a></li>
+  <li><a href="#resumen-por-cultivo" id="toc-resumen-por-cultivo" class="nav-link" data-scroll-target="#resumen-por-cultivo">Resumen por cultivo</a></li>
+  <li><a href="#gráficos-descriptivos" id="toc-gráficos-descriptivos" class="nav-link" data-scroll-target="#gráficos-descriptivos">Gráficos descriptivos</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Descripción de los rendimientos agrícolas</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Este informe explora el archivo <code>Rendimientos_decada.xlsx</code>. Cada fila representa una observación de un cultivo, una campaña y una ubicación. Para reproducirlo, guarde este documento en la misma carpeta que el archivo Excel y tenga instalados los paquetes <code>readxl</code>, <code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code> y <code>knitr</code>.</p>
+<section id="lectura-y-verificación-de-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="lectura-y-verificación-de-los-datos">Lectura y verificación de los datos</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>archivo <span class="ot">&lt;-</span> <span class="st">"Rendimientos_decada.xlsx"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(archivo)) {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"No se encontró "</span>, archivo, <span class="st">". Guarde el Excel junto a este documento."</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(archivo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expecting numeric in F8703 / R8703C6: got 'SD'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expecting numeric in G8703 / R8703C7: got 'SD'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expecting numeric in H8703 / R8703C8: got 'SD'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nombres_esperados <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cultivo"</span>, <span class="st">"Campaña"</span>, <span class="st">"Provincia"</span>, <span class="st">"Departamento"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sup. Sembrada"</span>, <span class="st">"Sup. Cosechada"</span>, <span class="st">"Producción"</span>, <span class="st">"Rendimiento"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Nombres de variables leídos:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nombres de variables leídos:</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(datos))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Cultivo"        "Campaña"        "Provincia"      "Departamento"  
+[5] "Sup. Sembrada"  "Sup. Cosechada" "Producción"     "Rendimiento"   </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>faltantes <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(nombres_esperados, <span class="fu">names</span>(datos))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(faltantes) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"Faltan estas variables esperadas: "</span>, <span class="fu">paste</span>(faltantes, <span class="at">collapse =</span> <span class="st">", "</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Verificación correcta: están presentes todas las variables esperadas.</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Verificación correcta: están presentes todas las variables esperadas.</code></pre>
+</div>
+</div>
+</section>
+<section id="descripción-breve" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-breve">Descripción breve</h2>
+<p>El conjunto contiene 34224 filas y 8 variables. Las variables descriptivas identifican el cultivo, la campaña, la provincia y el departamento; las restantes registran superficies, producción y rendimiento.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>conteo_cultivos <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Cultivo, <span class="at">name =</span> <span class="st">"Observaciones"</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(conteo_cultivos, <span class="at">caption =</span> <span class="st">"Cantidad de observaciones por cultivo"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Cantidad de observaciones por cultivo</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cultivo</th>
+<th style="text-align: right;">Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Maíz</td>
+<td style="text-align: right;">9496</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Trigo total</td>
+<td style="text-align: right;">9080</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: right;">8195</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Soja total</td>
+<td style="text-align: right;">7453</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Primeras observaciones:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(datos, <span class="dv">6</span>), <span class="at">caption =</span> <span class="st">"Seis primeras filas"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Seis primeras filas</caption>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cultivo</th>
+<th style="text-align: left;">Campaña</th>
+<th style="text-align: left;">Provincia</th>
+<th style="text-align: left;">Departamento</th>
+<th style="text-align: right;">Sup. Sembrada</th>
+<th style="text-align: right;">Sup. Cosechada</th>
+<th style="text-align: right;">Producción</th>
+<th style="text-align: right;">Rendimiento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">1969/70</td>
+<td style="text-align: left;">BUENOS AIRES</td>
+<td style="text-align: left;">25 DE MAYO</td>
+<td style="text-align: right;">30000</td>
+<td style="text-align: right;">30000</td>
+<td style="text-align: right;">22500</td>
+<td style="text-align: right;">750</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">1970/71</td>
+<td style="text-align: left;">BUENOS AIRES</td>
+<td style="text-align: left;">25 DE MAYO</td>
+<td style="text-align: right;">44000</td>
+<td style="text-align: right;">31000</td>
+<td style="text-align: right;">15000</td>
+<td style="text-align: right;">484</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">1971/72</td>
+<td style="text-align: left;">BUENOS AIRES</td>
+<td style="text-align: left;">25 DE MAYO</td>
+<td style="text-align: right;">22000</td>
+<td style="text-align: right;">19000</td>
+<td style="text-align: right;">10450</td>
+<td style="text-align: right;">550</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">1972/73</td>
+<td style="text-align: left;">BUENOS AIRES</td>
+<td style="text-align: left;">25 DE MAYO</td>
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">5000</td>
+<td style="text-align: right;">5100</td>
+<td style="text-align: right;">1020</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">1973/74</td>
+<td style="text-align: left;">BUENOS AIRES</td>
+<td style="text-align: left;">25 DE MAYO</td>
+<td style="text-align: right;">14000</td>
+<td style="text-align: right;">14000</td>
+<td style="text-align: right;">10800</td>
+<td style="text-align: right;">771</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">1974/75</td>
+<td style="text-align: left;">BUENOS AIRES</td>
+<td style="text-align: left;">25 DE MAYO</td>
+<td style="text-align: right;">8000</td>
+<td style="text-align: right;">2400</td>
+<td style="text-align: right;">2160</td>
+<td style="text-align: right;">900</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="estadística-descriptiva-de-variables-numéricas" class="level2">
+<h2 class="anchored" data-anchor-id="estadística-descriptiva-de-variables-numéricas">Estadística descriptiva de variables numéricas</h2>
+<p>Se identifican automáticamente las variables numéricas y se comprueba que las cuatro variables de superficie, producción y rendimiento tengan ese tipo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>variables_esperadas_numericas <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sup. Sembrada"</span>, <span class="st">"Sup. Cosechada"</span>, <span class="st">"Producción"</span>, <span class="st">"Rendimiento"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>variables_numericas <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">select</span>(datos, <span class="fu">where</span>(is.numeric)))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>no_numericas <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(variables_esperadas_numericas, variables_numericas)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(no_numericas) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Se esperaban variables numéricas, pero no lo son: "</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(no_numericas, <span class="at">collapse =</span> <span class="st">", "</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Variables numéricas:"</span>, <span class="fu">paste</span>(variables_numericas, <span class="at">collapse =</span> <span class="st">", "</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Variables numéricas: Sup. Sembrada, Sup. Cosechada, Producción, Rendimiento </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>datos_largos <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">all_of</span>(variables_numericas),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Variable"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"Valor"</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>resumen_numerico <span class="ot">&lt;-</span> datos_largos <span class="sc">%&gt;%</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Variable) <span class="sc">%&gt;%</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(Valor)),</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desviacion_estandar =</span> <span class="fu">sd</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mediana =</span> <span class="fu">median</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Minimo =</span> <span class="fu">min</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Maximo =</span> <span class="fu">max</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  resumen_numerico,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Resumen de las variables numéricas"</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Resumen de las variables numéricas</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 27%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Media</th>
+<th style="text-align: right;">Desviacion_estandar</th>
+<th style="text-align: right;">Mediana</th>
+<th style="text-align: right;">Minimo</th>
+<th style="text-align: right;">Maximo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Producción</td>
+<td style="text-align: right;">34223</td>
+<td style="text-align: right;">83850.71</td>
+<td style="text-align: right;">188508.60</td>
+<td style="text-align: right;">22000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3412500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rendimiento</td>
+<td style="text-align: right;">34223</td>
+<td style="text-align: right;">2743.93</td>
+<td style="text-align: right;">1896.70</td>
+<td style="text-align: right;">2200</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">20000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sup. Cosechada</td>
+<td style="text-align: right;">34223</td>
+<td style="text-align: right;">28387.83</td>
+<td style="text-align: right;">55179.72</td>
+<td style="text-align: right;">9400</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">883613</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sup. Sembrada</td>
+<td style="text-align: right;">34224</td>
+<td style="text-align: right;">30594.09</td>
+<td style="text-align: right;">56965.30</td>
+<td style="text-align: right;">11000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">894613</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="resumen-por-cultivo" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-por-cultivo">Resumen por cultivo</h2>
+<p>La tabla presenta las mismas medidas para cada combinación de cultivo y variable numérica. <code>n</code> indica la cantidad de valores no faltantes usados en cada cálculo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>resumen_por_cultivo <span class="ot">&lt;-</span> datos_largos <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Cultivo, Variable) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(Valor)),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media =</span> <span class="fu">mean</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desviacion_estandar =</span> <span class="fu">sd</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mediana =</span> <span class="fu">median</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Minimo =</span> <span class="fu">min</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Maximo =</span> <span class="fu">max</span>(Valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  resumen_por_cultivo,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Estadística descriptiva por cultivo y variable"</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Estadística descriptiva por cultivo y variable</caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 5%">
+<col style="width: 11%">
+<col style="width: 23%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Cultivo</th>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Media</th>
+<th style="text-align: right;">Desviacion_estandar</th>
+<th style="text-align: right;">Mediana</th>
+<th style="text-align: right;">Minimo</th>
+<th style="text-align: right;">Maximo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">Producción</td>
+<td style="text-align: right;">8195</td>
+<td style="text-align: right;">18819.35</td>
+<td style="text-align: right;">32816.53</td>
+<td style="text-align: right;">5760</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">411400</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">Rendimiento</td>
+<td style="text-align: right;">8195</td>
+<td style="text-align: right;">1560.61</td>
+<td style="text-align: right;">657.50</td>
+<td style="text-align: right;">1529</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4037</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">Sup. Cosechada</td>
+<td style="text-align: right;">8195</td>
+<td style="text-align: right;">11851.97</td>
+<td style="text-align: right;">18718.92</td>
+<td style="text-align: right;">4350</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">216500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Girasol</td>
+<td style="text-align: left;">Sup. Sembrada</td>
+<td style="text-align: right;">8195</td>
+<td style="text-align: right;">12384.71</td>
+<td style="text-align: right;">19297.92</td>
+<td style="text-align: right;">4500</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">218000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maíz</td>
+<td style="text-align: left;">Producción</td>
+<td style="text-align: right;">9495</td>
+<td style="text-align: right;">99310.60</td>
+<td style="text-align: right;">221511.06</td>
+<td style="text-align: right;">30000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3412500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maíz</td>
+<td style="text-align: left;">Rendimiento</td>
+<td style="text-align: right;">9495</td>
+<td style="text-align: right;">4607.05</td>
+<td style="text-align: right;">2425.66</td>
+<td style="text-align: right;">4200</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">11800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maíz</td>
+<td style="text-align: left;">Sup. Cosechada</td>
+<td style="text-align: right;">9495</td>
+<td style="text-align: right;">17810.53</td>
+<td style="text-align: right;">34205.76</td>
+<td style="text-align: right;">7800</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">525000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maíz</td>
+<td style="text-align: left;">Sup. Sembrada</td>
+<td style="text-align: right;">9496</td>
+<td style="text-align: right;">22381.66</td>
+<td style="text-align: right;">38977.99</td>
+<td style="text-align: right;">11000</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">563000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Soja total</td>
+<td style="text-align: left;">Producción</td>
+<td style="text-align: right;">7453</td>
+<td style="text-align: right;">151016.57</td>
+<td style="text-align: right;">279133.64</td>
+<td style="text-align: right;">40500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2637503</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Soja total</td>
+<td style="text-align: left;">Rendimiento</td>
+<td style="text-align: right;">7453</td>
+<td style="text-align: right;">2160.64</td>
+<td style="text-align: right;">834.44</td>
+<td style="text-align: right;">2067</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">20000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Soja total</td>
+<td style="text-align: left;">Sup. Cosechada</td>
+<td style="text-align: right;">7453</td>
+<td style="text-align: right;">57219.85</td>
+<td style="text-align: right;">94324.99</td>
+<td style="text-align: right;">19700</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">883613</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Soja total</td>
+<td style="text-align: left;">Sup. Sembrada</td>
+<td style="text-align: right;">7453</td>
+<td style="text-align: right;">58742.94</td>
+<td style="text-align: right;">96025.05</td>
+<td style="text-align: right;">20500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">894613</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Trigo total</td>
+<td style="text-align: left;">Producción</td>
+<td style="text-align: right;">9080</td>
+<td style="text-align: right;">71246.44</td>
+<td style="text-align: right;">98903.14</td>
+<td style="text-align: right;">35200</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1063118</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Trigo total</td>
+<td style="text-align: left;">Rendimiento</td>
+<td style="text-align: right;">9080</td>
+<td style="text-align: right;">2342.41</td>
+<td style="text-align: right;">1054.03</td>
+<td style="text-align: right;">2100</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7186</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Trigo total</td>
+<td style="text-align: left;">Sup. Cosechada</td>
+<td style="text-align: right;">9080</td>
+<td style="text-align: right;">30706.99</td>
+<td style="text-align: right;">39784.45</td>
+<td style="text-align: right;">16500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">298000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Trigo total</td>
+<td style="text-align: left;">Sup. Sembrada</td>
+<td style="text-align: right;">9080</td>
+<td style="text-align: right;">32512.35</td>
+<td style="text-align: right;">41409.24</td>
+<td style="text-align: right;">18000</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">350000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="gráficos-descriptivos" class="level2">
+<h2 class="anchored" data-anchor-id="gráficos-descriptivos">Gráficos descriptivos</h2>
+<section id="observaciones-por-cultivo" class="level3">
+<h3 class="anchored" data-anchor-id="observaciones-por-cultivo">Observaciones por cultivo</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(conteo_cultivos, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Cultivo, Observaciones), <span class="at">y =</span> Observaciones)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#3977A8"</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cantidad de observaciones por cultivo"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Cultivo"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Número de observaciones"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="distribución-del-rendimiento-por-cultivo" class="level3">
+<h3 class="anchored" data-anchor-id="distribución-del-rendimiento-por-cultivo">Distribución del rendimiento por cultivo</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Rendimiento)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"#3977A8"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Cultivo, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución del rendimiento"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Rendimiento"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frecuencia"</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="superficie-sembrada-y-producción" class="level3">
+<h3 class="anchored" data-anchor-id="superficie-sembrada-y-producción">Superficie sembrada y producción</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Sup. Sembrada</span><span class="st">`</span>, <span class="at">y =</span> Producción, <span class="at">color =</span> Cultivo)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.35</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Producción en relación con la superficie sembrada"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Superficie sembrada"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Producción"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cultivo"</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Código desplazable","output":"Salida desplazable"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

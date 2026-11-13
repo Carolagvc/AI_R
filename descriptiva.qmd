@@ -1,0 +1,185 @@
+---
+title: "Descripción de los rendimientos agrícolas"
+lang: es
+format:
+  html:
+    toc: true
+    toc-depth: 2
+execute:
+  echo: true
+  message: false
+---
+
+Este informe explora el archivo `Rendimientos_decada.xlsx`. Cada fila representa
+una observación de un cultivo, una campaña y una ubicación. Para reproducirlo,
+guarde este documento en la misma carpeta que el archivo Excel y tenga
+instalados los paquetes `readxl`, `dplyr`, `tidyr`, `ggplot2` y `knitr`.
+
+## Lectura y verificación de los datos
+
+```{r}
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(knitr)
+
+archivo <- "Rendimientos_decada.xlsx"
+
+if (!file.exists(archivo)) {
+  stop("No se encontró ", archivo, ". Guarde el Excel junto a este documento.")
+}
+
+datos <- read_excel(archivo)
+
+nombres_esperados <- c(
+  "Cultivo", "Campaña", "Provincia", "Departamento",
+  "Sup. Sembrada", "Sup. Cosechada", "Producción", "Rendimiento"
+)
+
+cat("Nombres de variables leídos:\n")
+print(names(datos))
+
+faltantes <- setdiff(nombres_esperados, names(datos))
+if (length(faltantes) > 0) {
+  stop("Faltan estas variables esperadas: ", paste(faltantes, collapse = ", "))
+}
+
+cat("\nVerificación correcta: están presentes todas las variables esperadas.\n")
+```
+
+## Descripción breve
+
+El conjunto contiene `r nrow(datos)` filas y `r ncol(datos)` variables. Las
+variables descriptivas identifican el cultivo, la campaña, la provincia y el
+departamento; las restantes registran superficies, producción y rendimiento.
+
+```{r}
+conteo_cultivos <- datos %>%
+  count(Cultivo, name = "Observaciones", sort = TRUE)
+
+kable(conteo_cultivos, caption = "Cantidad de observaciones por cultivo")
+```
+
+Primeras observaciones:
+
+```{r}
+kable(head(datos, 6), caption = "Seis primeras filas")
+```
+
+## Estadística descriptiva de variables numéricas
+
+Se identifican automáticamente las variables numéricas y se comprueba que las
+cuatro variables de superficie, producción y rendimiento tengan ese tipo.
+
+```{r}
+variables_esperadas_numericas <- c(
+  "Sup. Sembrada", "Sup. Cosechada", "Producción", "Rendimiento"
+)
+variables_numericas <- names(select(datos, where(is.numeric)))
+
+no_numericas <- setdiff(variables_esperadas_numericas, variables_numericas)
+if (length(no_numericas) > 0) {
+  stop(
+    "Se esperaban variables numéricas, pero no lo son: ",
+    paste(no_numericas, collapse = ", ")
+  )
+}
+
+cat("Variables numéricas:", paste(variables_numericas, collapse = ", "), "\n")
+
+datos_largos <- datos %>%
+  pivot_longer(
+    cols = all_of(variables_numericas),
+    names_to = "Variable",
+    values_to = "Valor"
+  )
+
+resumen_numerico <- datos_largos %>%
+  group_by(Variable) %>%
+  summarise(
+    n = sum(!is.na(Valor)),
+    Media = mean(Valor, na.rm = TRUE),
+    Desviacion_estandar = sd(Valor, na.rm = TRUE),
+    Mediana = median(Valor, na.rm = TRUE),
+    Minimo = min(Valor, na.rm = TRUE),
+    Maximo = max(Valor, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(
+  resumen_numerico,
+  digits = 2,
+  caption = "Resumen de las variables numéricas"
+)
+```
+
+## Resumen por cultivo
+
+La tabla presenta las mismas medidas para cada combinación de cultivo y
+variable numérica. `n` indica la cantidad de valores no faltantes usados en
+cada cálculo.
+
+```{r}
+resumen_por_cultivo <- datos_largos %>%
+  group_by(Cultivo, Variable) %>%
+  summarise(
+    n = sum(!is.na(Valor)),
+    Media = mean(Valor, na.rm = TRUE),
+    Desviacion_estandar = sd(Valor, na.rm = TRUE),
+    Mediana = median(Valor, na.rm = TRUE),
+    Minimo = min(Valor, na.rm = TRUE),
+    Maximo = max(Valor, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(
+  resumen_por_cultivo,
+  digits = 2,
+  caption = "Estadística descriptiva por cultivo y variable"
+)
+```
+
+## Gráficos descriptivos
+
+### Observaciones por cultivo
+
+```{r}
+ggplot(conteo_cultivos, aes(x = reorder(Cultivo, Observaciones), y = Observaciones)) +
+  geom_col(fill = "#3977A8") +
+  coord_flip() +
+  labs(
+    title = "Cantidad de observaciones por cultivo",
+    x = "Cultivo",
+    y = "Número de observaciones"
+  ) +
+  theme_minimal()
+```
+
+### Distribución del rendimiento por cultivo
+
+```{r}
+ggplot(datos, aes(x = Rendimiento)) +
+  geom_histogram(bins = 30, fill = "#3977A8", color = "white", na.rm = TRUE) +
+  facet_wrap(~ Cultivo, scales = "free_y") +
+  labs(
+    title = "Distribución del rendimiento",
+    x = "Rendimiento",
+    y = "Frecuencia"
+  ) +
+  theme_minimal()
+```
+
+### Superficie sembrada y producción
+
+```{r}
+ggplot(datos, aes(x = `Sup. Sembrada`, y = Producción, color = Cultivo)) +
+  geom_point(alpha = 0.35, na.rm = TRUE) +
+  labs(
+    title = "Producción en relación con la superficie sembrada",
+    x = "Superficie sembrada",
+    y = "Producción",
+    color = "Cultivo"
+  ) +
+  theme_minimal()
+```
